@@ -9,7 +9,7 @@ public class Option_21130814_MonjeRojas {
     private ArrayList<String> keywords;
 
     //constructor
-    public Option_21130814_MonjeRojas(int code, String msg, int cb_code, int fw_code, ArrayList<String> keywords){
+    public Option(int code, String msg, int cb_code, int fw_code, ArrayList<String> keywords){
         this.code = code;
         this.msg = msg;
         this.cb_code = cb_code;

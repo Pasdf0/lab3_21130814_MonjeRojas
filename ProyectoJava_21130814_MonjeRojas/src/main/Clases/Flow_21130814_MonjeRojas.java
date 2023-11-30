@@ -5,7 +5,7 @@ public class Flow_21130814_MonjeRojas {
     private String msg;
     private ArrayList<Option> options;
 
-    public Flow_21130814_MonjeRojas(int fw_code, String msg, ArrayList<Option> options){
+    public Flow(int fw_code, String msg, ArrayList<Option> options){
         this.fw_code = fw_code;
         this.msg = msg;
         this.options = options;
