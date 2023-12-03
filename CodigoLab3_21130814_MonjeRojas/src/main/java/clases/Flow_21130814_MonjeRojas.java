@@ -1,10 +1,11 @@
 package clases;
 
-import interfaz.Interface_21130814_MonjeRojas;
+import interfaz.Duplicidad_21130814_MonjeRojas;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Flow_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas implements Interface_21130814_MonjeRojas{
+public class Flow_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas implements Duplicidad_21130814_MonjeRojas {
     private ArrayList<Option_21130814_MonjeRojas> options;
 
     public void Flow(Integer id, String msg, Option_21130814_MonjeRojas... ops){
@@ -16,23 +17,33 @@ public class Flow_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas imp
 
     //Metodos
 
-    //Getters
+        //Getters
     public ArrayList<Option_21130814_MonjeRojas> getOptions() {return options;}
 
-    //Setters
+        //Setters
     public void setOptions(ArrayList<Option_21130814_MonjeRojas> options) {
-        ArrayList<Option_21130814_MonjeRojas> newOptions = new ArrayList<>();
+        ArrayList<Option_21130814_MonjeRojas> newOptions;
         newOptions = (ArrayList<Option_21130814_MonjeRojas>) remove_duplicates(options);
         this.options = newOptions;
     }
 
-    //Otros
+        //Otros
     public void ShowFlow(){
-        System.out.println("\n\nFlow");
+        System.out.println("----------\nFlow");
         System.out.println(this.getId());
         System.out.println(this.getMsg());
-        System.out.println(this.getOptions());
+        System.out.println("[");
+        ArrayList<Option_21130814_MonjeRojas> options = this.getOptions();
+        for (Option_21130814_MonjeRojas op : options){
+            op.ShowOption();
+        }
+        System.out.println("]");
+        System.out.println("----------\n");
     }
+    public void flowAddOption(Option_21130814_MonjeRojas Op){
+        this.add_not_dup(Op);
+    }
+
     @Override
     public ArrayList<?> remove_duplicates(ArrayList<?> options){
         //Conseguir ids
@@ -41,17 +52,8 @@ public class Flow_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas imp
             Option_21130814_MonjeRojas Op = (Option_21130814_MonjeRojas) item;
             ids.add(Op.getId());
         }
-        //conseguir ids unicas
-        ArrayList<Integer> ids_index = new ArrayList<>();
-        Integer i = 0;
-        for (Integer number : ids){
-            if (!ids_index.contains(number)){
-                ids_index.add(i);
-            }
-            else{
-                ids_index.add(-1);
-            }
-        }
+        //conseguir index de ids unicas
+        ArrayList<Integer> ids_index = System_21130814_MonjeRojas.getIdsIndex(ids);
         //filtrar options
         ArrayList<Option_21130814_MonjeRojas> newOptions = new ArrayList<>();
         for (Integer number : ids_index){
@@ -60,5 +62,18 @@ public class Flow_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas imp
             }
         }
         return newOptions;
+    }
+    @Override
+    public <T> void add_not_dup(T Op1){
+        Option_21130814_MonjeRojas Op = (Option_21130814_MonjeRojas) Op1;
+        //Conseguir ids
+        ArrayList<Integer> ids = new ArrayList<> ();
+        ArrayList<Option_21130814_MonjeRojas> options = this.getOptions();
+        for (Option_21130814_MonjeRojas item : options) {
+            ids.add(item.getId());
+        }
+        if (!ids.contains(Op.getId())){
+            this.options.add(Op);
+        }
     }
 }

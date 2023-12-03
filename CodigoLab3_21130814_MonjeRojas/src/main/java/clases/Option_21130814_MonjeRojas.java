@@ -29,12 +29,21 @@ public class Option_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas{
     }
 
     //Otros
+    /* Sin uso por el momento
+    public void clone(Option_21130814_MonjeRojas Op){
+        this.id = Op.getId();
+        this.msg = Op.getMsg();
+        this.cb_code = Op.getCb_code();
+        this.fw_code = Op.getFw_code();
+        this.keywords = Op.getKeywords();
+    }*/
     public void ShowOption(){
-        System.out.println("\n\nOption");
+        System.out.println("-----\nOption");
         System.out.println(this.getId());
         System.out.println(this.getMsg());
         System.out.println(this.getCb_code());
         System.out.println(this.getFw_code());
         System.out.println(this.getKeywords());
+        System.out.println("-----");
     }
 }
