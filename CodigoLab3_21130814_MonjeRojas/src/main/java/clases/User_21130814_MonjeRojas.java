@@ -3,22 +3,17 @@ package clases;
 import java.util.ArrayList;
 
 public class User_21130814_MonjeRojas{
-    private String name;
-    private ArrayList<String> chathis;
+    protected Integer permission_Id;
+    protected String name;
+    protected ArrayList<String> chathis;
 
     public void User(){
         this.name = "no_user";
         this.chathis = new ArrayList<String> ();
     }
-    //Sobrecarga
-    public void User(String name){
-        if (!name.equals("")) {
-            this.setName(name);
-        }
-        this.chathis = new ArrayList<String> ();
-    }
 
     //Getters
+    public Integer getPermission_Id() {return permission_Id;}
     public String getName() {return name;}
     public ArrayList<String> getChathis() {return chathis;}
 

@@ -17,8 +17,7 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
         this.date = new Date();
         this.setCb_code(cb_code);
         this.initial_cb_code = this.cb_code;
-        this.user = new User_21130814_MonjeRojas();
-        user.User();
+        this.setUser();
         this.userList = new ArrayList<User_21130814_MonjeRojas> ();
         ArrayList<Chatbot_21130814_MonjeRojas> chatbots = new ArrayList<> (Arrays.asList(cbs));
         this.setChatbots(chatbots);
@@ -33,7 +32,11 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
     public ArrayList<Chatbot_21130814_MonjeRojas> getChatbots() {return chatbots;}
 
         //Setters
-    public void setUser(String name) {this.user.setName(name);}
+    public void setUser(){
+        this.user = new User_21130814_MonjeRojas();
+        user.User();
+    }
+    public void setUser(User_21130814_MonjeRojas usr) {this.user = usr;}
     public void setChatbots(ArrayList<Chatbot_21130814_MonjeRojas> chatbots) {
         ArrayList<Chatbot_21130814_MonjeRojas> newChatbots;
         newChatbots = (ArrayList<Chatbot_21130814_MonjeRojas>) remove_duplicates(chatbots);
@@ -62,6 +65,57 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
     public void systemAddChatbot(Chatbot_21130814_MonjeRojas Cb){
         this.add_not_dup(Cb);
     }
+    public void systemAddAdminUser(String name){
+        AdminUser_21130814_MonjeRojas Usr = new AdminUser_21130814_MonjeRojas();
+        Usr.AdminUser(name);
+        if (this.findUser(name) == null){
+            this.userList.add(Usr);
+        }
+    }
+    public void systemAddCommonUser(String name){
+        CommonUser_21130814_MonjeRojas Usr = new CommonUser_21130814_MonjeRojas();
+        Usr.CommonUser(name);
+        if (this.findUser(name) == null){
+            this.userList.add(Usr);
+        }
+    }
+    public void systemLogin(String name){
+        User_21130814_MonjeRojas Usr = this.findUser(name);
+        if (Usr != null){
+            this.setUser(Usr);
+        }
+    }
+    public void systemLogout(){
+        if (!this.user.getName().equals("no_user")){
+            this.setUser();
+        }
+    }
+
+    public User_21130814_MonjeRojas findUser(String name){
+        for (User_21130814_MonjeRojas userTemp : this.userList){
+            if (name.toLowerCase().equals(userTemp.getName())){
+                return userTemp;
+            }
+        }
+        return null;
+    }
+
+    public static ArrayList<Integer> getIdsIndex(ArrayList<Integer> ids) {
+        var ids_aux = new ArrayList<Integer>();
+        ArrayList<Integer> ids_index = new ArrayList<>();
+        Integer i = 0;
+        for (Integer number : ids){
+            if (!ids_aux.contains(number)){
+                ids_index.add(i);
+                ids_aux.add(number);
+            }
+            else{
+                ids_index.add(-1);
+            }
+            i++;
+        }
+        return ids_index;
+    }
 
     @Override
     public ArrayList<?> remove_duplicates(ArrayList<?> chatbots){
@@ -81,22 +135,6 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
             }
         }
         return newChatbots;
-    }
-    public static ArrayList<Integer> getIdsIndex(ArrayList<Integer> ids) {
-        var ids_aux = new ArrayList<Integer>();
-        ArrayList<Integer> ids_index = new ArrayList<>();
-        Integer i = 0;
-        for (Integer number : ids){
-            if (!ids_aux.contains(number)){
-                ids_index.add(i);
-                ids_aux.add(number);
-            }
-            else{
-                ids_index.add(-1);
-            }
-            i++;
-        }
-        return ids_index;
     }
     @Override
     public <T> void add_not_dup(T Cb1){
