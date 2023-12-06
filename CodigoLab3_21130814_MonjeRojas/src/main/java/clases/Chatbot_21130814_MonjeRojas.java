@@ -8,7 +8,7 @@ public class Chatbot_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas 
     private ArrayList<Flow_21130814_MonjeRojas> flows;
     private Integer initial_fw_code;
 
-    public void Chatbot(Integer id, String name, String msg, Integer startFwID, Flow_21130814_MonjeRojas... fws){
+    public Chatbot_21130814_MonjeRojas(Integer id, String name, String msg, Integer startFwID, Flow_21130814_MonjeRojas... fws){
         this.setId(id);
         this.setName(name);
         this.setMsg(msg);
@@ -35,20 +35,25 @@ public class Chatbot_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas 
     //Otros
     public void ShowChatbot(){
         System.out.println("---------------\nChatbot");
-        System.out.println(this.getId());
-        System.out.println(this.getName());
-        System.out.println(this.getMsg());
-        System.out.println(this.getFw_code());
-        System.out.println("[");
-        ArrayList<Flow_21130814_MonjeRojas> chatbots = this.getFlows();
+        System.out.println("    " + this.getName());
+        System.out.println("    " + this.getMsg());
+        ArrayList<Flow_21130814_MonjeRojas> flows = this.getFlows();
         for (Flow_21130814_MonjeRojas fw : flows){
             fw.ShowFlow();
         }
-        System.out.println("]");
         System.out.println("---------------\n");
     }
     public void chatbotAddFlow(Flow_21130814_MonjeRojas Fw){
         this.add_not_dup(Fw);
+    }
+
+    public Flow_21130814_MonjeRojas findFw(Integer fw_code){
+        for (Flow_21130814_MonjeRojas Fw : this.flows){
+            if (fw_code.equals(Fw.getId())){
+                return Fw;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -60,7 +65,7 @@ public class Chatbot_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas 
             ids.add(Fw.getId());
         }
         //conseguir index de ids unicas
-        ArrayList<Integer> ids_index = System_21130814_MonjeRojas.getIdsIndex(ids);
+        ArrayList<Integer> ids_index = getIdsIndex(ids);
         //filtrar options
         ArrayList<Flow_21130814_MonjeRojas> newFlows = new ArrayList<>();
         for (Integer number : ids_index){

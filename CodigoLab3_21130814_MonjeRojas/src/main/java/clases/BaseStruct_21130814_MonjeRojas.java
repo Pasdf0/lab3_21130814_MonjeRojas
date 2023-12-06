@@ -1,5 +1,7 @@
 package clases;
 
+import java.util.ArrayList;
+
 public class BaseStruct_21130814_MonjeRojas {
     protected Integer id;
     protected String name;
@@ -39,5 +41,22 @@ public class BaseStruct_21130814_MonjeRojas {
         if (fw_code >= 0) {
             this.fw_code = fw_code;
         }
+    }
+
+    public static ArrayList<Integer> getIdsIndex(ArrayList<Integer> ids) {
+        var ids_aux = new ArrayList<Integer>();
+        ArrayList<Integer> ids_index = new ArrayList<>();
+        Integer i = 0;
+        for (Integer number : ids){
+            if (!ids_aux.contains(number)){
+                ids_index.add(i);
+                ids_aux.add(number);
+            }
+            else{
+                ids_index.add(-1);
+            }
+            i++;
+        }
+        return ids_index;
     }
 }

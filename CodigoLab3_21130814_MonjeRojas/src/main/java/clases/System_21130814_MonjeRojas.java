@@ -12,13 +12,13 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
     private ArrayList<Chatbot_21130814_MonjeRojas> chatbots;
     private Integer initial_cb_code;
 
-    public void System(String name, Integer cb_code, Chatbot_21130814_MonjeRojas... cbs){
+    public System_21130814_MonjeRojas(String name, Integer cb_code, Chatbot_21130814_MonjeRojas... cbs){
         this.setName(name);
         this.date = new Date();
         this.setCb_code(cb_code);
         this.initial_cb_code = this.cb_code;
         this.setUser();
-        this.userList = new ArrayList<User_21130814_MonjeRojas> ();
+        this.userList = new ArrayList<> ();
         ArrayList<Chatbot_21130814_MonjeRojas> chatbots = new ArrayList<> (Arrays.asList(cbs));
         this.setChatbots(chatbots);
     }
@@ -31,6 +31,7 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
     public ArrayList<User_21130814_MonjeRojas> getUserList() {return userList;}
     public ArrayList<Chatbot_21130814_MonjeRojas> getChatbots() {return chatbots;}
 
+
         //Setters
     public void setUser(){
         this.user = new User_21130814_MonjeRojas();
@@ -42,24 +43,23 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
         newChatbots = (ArrayList<Chatbot_21130814_MonjeRojas>) remove_duplicates(chatbots);
         this.chatbots = newChatbots;
     }
-    public void reset_cb_code(){
+    public void resetSystem(){
         this.cb_code = this.initial_cb_code;
+        for (Chatbot_21130814_MonjeRojas Cb: this.chatbots){
+            Cb.resetFw_code();
+        }
     }
+
 
         //Otros
     public void ShowSystem(){
         System.out.println("--------------------\nSystem");
         System.out.println(this.getName());
         System.out.println(this.getDate());
-        System.out.println(this.getCb_code());
-        System.out.println(this.getUser());
-        System.out.println(this.getUserList());
-        System.out.println("[");
         ArrayList<Chatbot_21130814_MonjeRojas> chatbots = this.getChatbots();
         for (Chatbot_21130814_MonjeRojas cb : chatbots){
             cb.ShowChatbot();
         }
-        System.out.println("]");
         System.out.println("--------------------\n");
     }
     public void systemAddChatbot(Chatbot_21130814_MonjeRojas Cb){
@@ -91,6 +91,27 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
         }
     }
 
+    public void systemTalk(String msg){
+        Chatbot_21130814_MonjeRojas Cb = this.findCb(this.cb_code);
+        Flow_21130814_MonjeRojas Fw = Cb.findFw(Cb.getFw_code());
+        Option_21130814_MonjeRojas Op = Fw.validMsg(msg);
+        if (Op != null){
+            Chatbot_21130814_MonjeRojas Cb2 = this.findCb(Op.getCb_code());
+            Flow_21130814_MonjeRojas Fw2 = Cb2.findFw(Op.getFw_code());
+            Cb2.setFw_code(Op.getFw_code());
+            this.setCb_code(Op.getCb_code());
+        }
+    }
+
+
+    public Chatbot_21130814_MonjeRojas findCb(Integer cb_code){
+        for (Chatbot_21130814_MonjeRojas Cb : this.chatbots){
+            if (cb_code.equals(Cb.getId())){
+                return Cb;
+            }
+        }
+        return null;
+    }
     public User_21130814_MonjeRojas findUser(String name){
         for (User_21130814_MonjeRojas userTemp : this.userList){
             if (name.toLowerCase().equals(userTemp.getName())){
@@ -98,23 +119,6 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
             }
         }
         return null;
-    }
-
-    public static ArrayList<Integer> getIdsIndex(ArrayList<Integer> ids) {
-        var ids_aux = new ArrayList<Integer>();
-        ArrayList<Integer> ids_index = new ArrayList<>();
-        Integer i = 0;
-        for (Integer number : ids){
-            if (!ids_aux.contains(number)){
-                ids_index.add(i);
-                ids_aux.add(number);
-            }
-            else{
-                ids_index.add(-1);
-            }
-            i++;
-        }
-        return ids_index;
     }
 
     @Override

@@ -8,7 +8,7 @@ public class Option_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas{
     private ArrayList<String> keywords;
 
     //constructor
-    public void Option(Integer id, String msg, Integer cb_code, Integer fw_code, String... strings){
+    public Option_21130814_MonjeRojas(Integer id, String msg, Integer cb_code, Integer fw_code, String... strings){
         this.setId(id);
         this.setMsg(msg);
         this.setCb_code(cb_code);
@@ -39,11 +39,8 @@ public class Option_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas{
     }*/
     public void ShowOption(){
         System.out.println("-----\nOption");
-        System.out.println(this.getId());
-        System.out.println(this.getMsg());
-        System.out.println(this.getCb_code());
-        System.out.println(this.getFw_code());
-        System.out.println(this.getKeywords());
+        System.out.println("            " + this.getMsg());
+        System.out.println("            " + this.getKeywords());
         System.out.println("-----");
     }
 }
