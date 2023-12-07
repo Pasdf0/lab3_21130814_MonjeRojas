@@ -42,8 +42,6 @@ public class Main {
         //
 
         Menu_21130814_MonjeRojas menu = new Menu_21130814_MonjeRojas();
-        menu.Start();
-        menu.getSystem().ShowSystem();
 
     }
 }

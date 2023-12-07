@@ -35,7 +35,6 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
         //Setters
     public void setUser(){
         this.user = new User_21130814_MonjeRojas();
-        user.User();
     }
     public void setUser(User_21130814_MonjeRojas usr) {this.user = usr;}
     public void setChatbots(ArrayList<Chatbot_21130814_MonjeRojas> chatbots) {
@@ -66,15 +65,13 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
         this.add_not_dup(Cb);
     }
     public void systemAddAdminUser(String name){
-        AdminUser_21130814_MonjeRojas Usr = new AdminUser_21130814_MonjeRojas();
-        Usr.AdminUser(name);
+        AdminUser_21130814_MonjeRojas Usr = new AdminUser_21130814_MonjeRojas(name);
         if (this.findUser(name) == null){
             this.userList.add(Usr);
         }
     }
     public void systemAddCommonUser(String name){
-        CommonUser_21130814_MonjeRojas Usr = new CommonUser_21130814_MonjeRojas();
-        Usr.CommonUser(name);
+        CommonUser_21130814_MonjeRojas Usr = new CommonUser_21130814_MonjeRojas(name);
         if (this.findUser(name) == null){
             this.userList.add(Usr);
         }
@@ -95,6 +92,7 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
         Chatbot_21130814_MonjeRojas Cb = this.findCb(this.cb_code);
         Flow_21130814_MonjeRojas Fw = Cb.findFw(Cb.getFw_code());
         Option_21130814_MonjeRojas Op = Fw.validMsg(msg);
+        this.user.storeHistory(this.getName(),this.getUser().getName(),this.getDate(),Cb,Fw,msg);
         if (Op != null){
             Chatbot_21130814_MonjeRojas Cb2 = this.findCb(Op.getCb_code());
             Flow_21130814_MonjeRojas Fw2 = Cb2.findFw(Op.getFw_code());
@@ -114,7 +112,7 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
     }
     public User_21130814_MonjeRojas findUser(String name){
         for (User_21130814_MonjeRojas userTemp : this.userList){
-            if (name.toLowerCase().equals(userTemp.getName())){
+            if (name.equalsIgnoreCase(userTemp.getName())){
                 return userTemp;
             }
         }
