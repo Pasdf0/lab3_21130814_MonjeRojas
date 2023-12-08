@@ -1,6 +1,7 @@
 package clases;
 
 import interfaz.Duplicidad_21130814_MonjeRojas;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -19,8 +20,13 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
         this.initial_cb_code = this.cb_code;
         this.setUser();
         this.userList = new ArrayList<> ();
-        ArrayList<Chatbot_21130814_MonjeRojas> chatbots = new ArrayList<> (Arrays.asList(cbs));
-        this.setChatbots(chatbots);
+        if (cbs != null) {
+            ArrayList<Chatbot_21130814_MonjeRojas> chatbots = new ArrayList<>(Arrays.asList(cbs));
+            this.setChatbots(chatbots);
+        }
+        else{
+            this.chatbots = new ArrayList<>();
+        }
     }
 
     //Metodos
@@ -51,16 +57,6 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
 
 
         //Otros
-    public void ShowSystem(){
-        System.out.println("--------------------\nSystem");
-        System.out.println(this.getName());
-        System.out.println(this.getDate());
-        ArrayList<Chatbot_21130814_MonjeRojas> chatbots = this.getChatbots();
-        for (Chatbot_21130814_MonjeRojas cb : chatbots){
-            cb.ShowChatbot();
-        }
-        System.out.println("--------------------\n");
-    }
     public void systemAddChatbot(Chatbot_21130814_MonjeRojas Cb){
         this.add_not_dup(Cb);
     }
@@ -85,6 +81,7 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
     public void systemLogout(){
         if (!this.user.getName().equals("no_user")){
             this.setUser();
+            this.resetSystem();
         }
     }
 
@@ -101,6 +98,32 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
         }
     }
 
+    public void systemSynthesis(String user){
+        User_21130814_MonjeRojas Usr= this.findUser(user);
+        System.out.println("Synthesis para Usuario " + user + ": \n\n");
+        for (String str : Usr.getChathis()){
+            System.out.println(str + "\n\n");
+        }
+    }
+
+    public void ShowSystem(){
+        System.out.println(this.getName());
+        for (Chatbot_21130814_MonjeRojas Cb : this.getChatbots()){
+            Cb.ShowChatbot();
+        }
+    }
+
+    public void systemState(){
+        Chatbot_21130814_MonjeRojas Cb = this.findCb(this.getCb_code());
+        Flow_21130814_MonjeRojas Fw = Cb.findFw(Cb.getFw_code());
+        String FormattedChat = this.name + " - " + this.user.getName() + "\n" + this.date + "\n" + Cb.getName() + "\n" + Fw.getMsg() + "\n";
+        String ChatTemp = "";
+        for (Option_21130814_MonjeRojas Op : Fw.getOptions()){
+            ChatTemp = ChatTemp + Op.getMsg() + "\n";
+        }
+        System.out.println(FormattedChat + ChatTemp);
+    }
+
 
     public Chatbot_21130814_MonjeRojas findCb(Integer cb_code){
         for (Chatbot_21130814_MonjeRojas Cb : this.chatbots){
@@ -111,6 +134,9 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
         return null;
     }
     public User_21130814_MonjeRojas findUser(String name){
+        if (this.user.getName().equalsIgnoreCase(name)){
+            return this.getUser();
+        }
         for (User_21130814_MonjeRojas userTemp : this.userList){
             if (name.equalsIgnoreCase(userTemp.getName())){
                 return userTemp;

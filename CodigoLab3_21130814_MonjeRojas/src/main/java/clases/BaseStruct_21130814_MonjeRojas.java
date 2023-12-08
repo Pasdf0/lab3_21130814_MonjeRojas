@@ -1,6 +1,7 @@
 package clases;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BaseStruct_21130814_MonjeRojas {
     protected Integer id;

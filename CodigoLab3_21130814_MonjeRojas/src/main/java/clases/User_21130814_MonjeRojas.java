@@ -25,6 +25,10 @@ public class User_21130814_MonjeRojas{
         }
     }
 
+    //public void updateHistory(User_21130814_MonjeRojas Usr){
+    //    this.chathis = Usr.chathis;
+    //}
+
     public void storeHistory(String name, String user, Date date, Chatbot_21130814_MonjeRojas Cb, Flow_21130814_MonjeRojas Fw, String msg){
         String FormattedChat = name + " - " + user + "\n" + date + "\n" + Cb.getName() + "\n" + Fw.getMsg() + "\n";
         String ChatTemp = "";

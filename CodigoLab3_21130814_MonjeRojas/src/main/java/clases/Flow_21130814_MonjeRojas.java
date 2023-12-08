@@ -11,8 +11,13 @@ public class Flow_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas imp
     public Flow_21130814_MonjeRojas(Integer id, String msg, Option_21130814_MonjeRojas... ops){
         this.setId(id);
         this.setMsg(msg);
-        ArrayList<Option_21130814_MonjeRojas> options = new ArrayList<> (Arrays.asList(ops));
-        this.setOptions(options);
+        if (ops != null) {
+            ArrayList<Option_21130814_MonjeRojas> options = new ArrayList<>(Arrays.asList(ops));
+            this.setOptions(options);
+        }
+        else{
+            this.options = new ArrayList<>();
+        }
     }
 
     //Metodos

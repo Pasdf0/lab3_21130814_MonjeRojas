@@ -13,8 +13,13 @@ public class Option_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas{
         this.setMsg(msg);
         this.setCb_code(cb_code);
         this.setFw_code(fw_code);
-        ArrayList<String> keywords = new ArrayList<> (Arrays.asList(strings));
-        this.setKeywords(keywords);
+        if (strings != null) {
+            ArrayList<String> keywords = new ArrayList<>(Arrays.asList(strings));
+            this.setKeywords(keywords);
+        }
+        else{
+            this.keywords = new ArrayList<>();
+        }
     }
 
     //Metodos

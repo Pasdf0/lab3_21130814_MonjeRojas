@@ -1,6 +1,7 @@
 package clases;
 
 import interfaz.Duplicidad_21130814_MonjeRojas;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -14,8 +15,13 @@ public class Chatbot_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas 
         this.setMsg(msg);
         this.setFw_code(startFwID);
         this.initial_fw_code = this.fw_code;
-        ArrayList<Flow_21130814_MonjeRojas> flows = new ArrayList<> (Arrays.asList(fws));
-        this.setFlows(flows);
+        if (fws != null) {
+            ArrayList<Flow_21130814_MonjeRojas> flows = new ArrayList<>(Arrays.asList(fws));
+            this.setFlows(flows);
+        }
+        else{
+            this.flows = new ArrayList<>();
+        }
     }
 
     //Getters
