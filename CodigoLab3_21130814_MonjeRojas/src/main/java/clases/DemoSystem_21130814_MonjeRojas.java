@@ -29,8 +29,9 @@ public class DemoSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
         Flow_21130814_MonjeRojas F20 = new Flow_21130814_MonjeRojas(1,"Flujo 1 Chatbot1\n¿Donde te gustaría ir?",Op3,Op4,Op5);
         Flow_21130814_MonjeRojas F21 = new Flow_21130814_MonjeRojas(2,"Flujo 2 Chatbot1\n¿Qué atractivos te gustaría visitar?",Op7,Op8,Op8,Op9,Op10);
         Flow_21130814_MonjeRojas F22 = new Flow_21130814_MonjeRojas(3,"Flujo 3 Chatbot1\n¿Vas solo o acompañado?",Op11,Op12,Op13,Op14,Op15);
-        F20.add_not_dup(Op6);
-        Chatbot_21130814_MonjeRojas Cb1 = new Chatbot_21130814_MonjeRojas(1,"Agencia Viajes","Bienvenido\n¿Donde quieres viajar",1,F20,F21,F21,F22,F22);
+        F20.flowAddOption(Op6);
+        Chatbot_21130814_MonjeRojas Cb1 = new Chatbot_21130814_MonjeRojas(1,"Agencia Viajes","Bienvenido\n¿Donde quieres viajar",1,F20,F21,F21);
+        Cb1.chatbotAddFlow(F22);
         //Chatbot 2
         Option_21130814_MonjeRojas Op16 = new Option_21130814_MonjeRojas(1,"1) Carrera Técnica",2,1,"Técnica");
         Option_21130814_MonjeRojas Op17 = new Option_21130814_MonjeRojas(2,"2) Postgrado",2,1,"Doctorado","Magister","Postgrado");
@@ -39,6 +40,9 @@ public class DemoSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
         Chatbot_21130814_MonjeRojas Cb2 = new Chatbot_21130814_MonjeRojas(2,"Orientador Académico","Bienvenido\n¿Qué te gustaría estudiar?",1,F30);
 
         //System
-        return new DemoSystem_21130814_MonjeRojas(Cb0,Cb1,Cb2);
+        DemoSystem_21130814_MonjeRojas demo = new DemoSystem_21130814_MonjeRojas(Cb0,Cb1,Cb2);
+        demo.systemAddAdminUser("Pasdf");
+        return demo;
+        //return new DemoSystem_21130814_MonjeRojas(Cb0,Cb1,Cb2);
     }
 }

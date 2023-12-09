@@ -34,11 +34,16 @@ public class Flow_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas imp
 
         //Otros
     public void ShowFlow(){
-        System.out.println("----------\nFlow");
-        System.out.println("        " + this.getMsg());
-        ArrayList<Option_21130814_MonjeRojas> options = this.getOptions();
-        for (Option_21130814_MonjeRojas op : options){op.ShowOption();}
-        System.out.println("----------\n");
+        System.out.println("### Flow (id: " + this.getId() + ")");
+        System.out.println("### Mensaje: " + this.getMsg());
+        if (this.getOptions().isEmpty()) {
+            System.out.println("### [No_Options]");
+        }
+        else {
+            for (Option_21130814_MonjeRojas op : this.getOptions()) {
+                op.ShowOption();
+            }
+        }
     }
     public void flowAddOption(Option_21130814_MonjeRojas Op){
         this.add_not_dup(Op);

@@ -4,10 +4,11 @@ import interfaz.Duplicidad_21130814_MonjeRojas;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Chatbot_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas implements Duplicidad_21130814_MonjeRojas {
     private ArrayList<Flow_21130814_MonjeRojas> flows;
-    private Integer initial_fw_code;
+    private final Integer initial_fw_code;
 
     public Chatbot_21130814_MonjeRojas(Integer id, String name, String msg, Integer startFwID, Flow_21130814_MonjeRojas... fws){
         this.setId(id);
@@ -40,15 +41,37 @@ public class Chatbot_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas 
 
     //Otros
     public void ShowChatbot(){
-        System.out.println("---------------\nChatbot");
-        System.out.println("    " + this.getName());
-        System.out.println("    " + this.getMsg());
-        ArrayList<Flow_21130814_MonjeRojas> flows = this.getFlows();
-        for (Flow_21130814_MonjeRojas fw : flows){
-            fw.ShowFlow();
+        System.out.println("## Chatbot (id: " + this.getId() + ")");
+        System.out.println("## Nombre: " + this.getName());
+        System.out.println("## Mensaje: " + this.getMsg());
+        if (this.getFlows().isEmpty()){
+            System.out.println("## [No_Flows]");
         }
-        System.out.println("---------------\n");
+        else {
+            for (Flow_21130814_MonjeRojas fw : this.getFlows()) {
+                fw.ShowFlow();
+            }
+        }
     }
+    public Flow_21130814_MonjeRojas ChooseFlow(){
+        if (this.getFlows().isEmpty()){
+            System.out.println("\n-Este Chatbot no posee Flows-");
+            return null;
+        }
+        else{
+            System.out.println("Lista de Flows: ");
+            System.out.println("-Para seleccionar ingresar la id-");
+            Scanner sc = new Scanner(System.in);
+            for (Flow_21130814_MonjeRojas Fw : this.getFlows()) {
+                System.out.println("(id: " + Fw.getId() + ") " + Fw.getMsg());
+            }
+            System.out.print("\nRespuesta: ");
+            Integer index = sc.nextInt();
+            sc.nextLine();
+            return this.findFw(index);
+        }
+    }
+
     public void chatbotAddFlow(Flow_21130814_MonjeRojas Fw){
         this.add_not_dup(Fw);
     }

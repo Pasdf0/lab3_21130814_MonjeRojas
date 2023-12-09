@@ -5,13 +5,16 @@ import interfaz.Duplicidad_21130814_MonjeRojas;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Scanner;
+import java.util.Random;
+import static java.lang.Math.abs;
 
 public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas implements Duplicidad_21130814_MonjeRojas {
-    private Date date;
+    private final Date date;
     private User_21130814_MonjeRojas user;
     private ArrayList<User_21130814_MonjeRojas> userList;
     private ArrayList<Chatbot_21130814_MonjeRojas> chatbots;
-    private Integer initial_cb_code;
+    private final Integer initial_cb_code;
 
     public System_21130814_MonjeRojas(String name, Integer cb_code, Chatbot_21130814_MonjeRojas... cbs){
         this.setName(name);
@@ -44,9 +47,14 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
     }
     public void setUser(User_21130814_MonjeRojas usr) {this.user = usr;}
     public void setChatbots(ArrayList<Chatbot_21130814_MonjeRojas> chatbots) {
-        ArrayList<Chatbot_21130814_MonjeRojas> newChatbots;
-        newChatbots = (ArrayList<Chatbot_21130814_MonjeRojas>) remove_duplicates(chatbots);
-        this.chatbots = newChatbots;
+        if (!chatbots.isEmpty()){
+            ArrayList<Chatbot_21130814_MonjeRojas> newChatbots;
+            newChatbots = (ArrayList<Chatbot_21130814_MonjeRojas>) remove_duplicates(chatbots);
+            this.chatbots = newChatbots;
+        }
+        else{
+            this.chatbots = chatbots;
+        }
     }
     public void resetSystem(){
         this.cb_code = this.initial_cb_code;
@@ -84,7 +92,6 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
             this.resetSystem();
         }
     }
-
     public void systemTalk(String msg){
         Chatbot_21130814_MonjeRojas Cb = this.findCb(this.cb_code);
         Flow_21130814_MonjeRojas Fw = Cb.findFw(Cb.getFw_code());
@@ -97,7 +104,6 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
             this.setCb_code(Op.getCb_code());
         }
     }
-
     public void systemSynthesis(String user){
         User_21130814_MonjeRojas Usr= this.findUser(user);
         System.out.println("Synthesis para Usuario " + user + ": \n\n");
@@ -105,11 +111,30 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
             System.out.println(str + "\n\n");
         }
     }
+    public void systemSimulate(Integer maxInt, Integer seed){
+        Random random = new Random(seed);
+        while (maxInt > 0){
+            Integer newSeed = abs(random.nextInt());
+            Chatbot_21130814_MonjeRojas Cb = this.findCb(this.getCb_code());
+            Integer length = Cb.findFw(Cb.getFw_code()).getOptions().size();
+            int answer = (newSeed % length) + 1;
+            String res = Integer.toString(answer);
+            this.systemTalk(res);
+            maxInt--;
+        }
+        this.resetSystem();
+    }
 
     public void ShowSystem(){
-        System.out.println(this.getName());
-        for (Chatbot_21130814_MonjeRojas Cb : this.getChatbots()){
-            Cb.ShowChatbot();
+        System.out.println("\n");
+        System.out.println("#" + this.getName());
+        if (this.getChatbots().isEmpty()){
+            System.out.println("# [No_Chatbots]");
+        }
+        else {
+            for (Chatbot_21130814_MonjeRojas Cb : this.getChatbots()) {
+                Cb.ShowChatbot();
+            }
         }
     }
 
@@ -144,6 +169,26 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
         }
         return null;
     }
+
+    public Chatbot_21130814_MonjeRojas ChooseChatbot(){
+        if (this.getChatbots().isEmpty()){
+            System.out.println("\n-Este System no posee Chatbots-");
+            return null;
+        }
+        else {
+            System.out.println("Lista de sus Chatbots: ");
+            System.out.println("-Para seleccionar ingresar la id-");
+            Scanner sc = new Scanner(System.in);
+            for (Chatbot_21130814_MonjeRojas Cb : this.getChatbots()) {
+                System.out.println("(id: " + Cb.getId() + ") " + Cb.getName());
+            }
+            System.out.print("\nRespuesta: ");
+            Integer index = sc.nextInt();
+            sc.nextLine();
+            return this.findCb(index);
+        }
+    }
+
 
     @Override
     public ArrayList<?> remove_duplicates(ArrayList<?> chatbots){

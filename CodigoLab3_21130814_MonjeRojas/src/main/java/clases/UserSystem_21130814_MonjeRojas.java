@@ -6,27 +6,19 @@ import java.util.Scanner;
 public class UserSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
     private AdminUser_21130814_MonjeRojas owner;
 
-    public UserSystem_21130814_MonjeRojas(AdminUser_21130814_MonjeRojas Usr){
-        super("Sistema de " + Usr.getName(),1000);
-        this.owner = Usr;
+    public UserSystem_21130814_MonjeRojas(String name, Integer cb_code) {
+        super(name, cb_code);
     }
 
-    public void createSystem(){
-        System.out.println("############### Creando Sistema de Chatbots ###############");
-        System.out.println("# Instrucciones:                                          #");
-        System.out.println("# -No se aceptan errores de Ingreso                       #");
-        System.out.println("# -Se pueden dejar elementos como keywords, los option    #");
-        System.out.println("#  en un flow o los flows en un chatbot vacios.           #");
-        System.out.println("# -Se pueden responder a las preguntas (¿?) ingresando    #");
-        System.out.println("#  cualquier cosa, detecta inputs vacios para detener el  #");
-        System.out.println("#  proceso.                                               #");
-        System.out.println("# -Por favor seguir instrucciones, gracias.               #");
+    public static UserSystem_21130814_MonjeRojas createSystem(AdminUser_21130814_MonjeRojas Usr){
         Scanner sc = new Scanner(System.in);
-        System.out.print("\n Ingrese la id del chatbot inicial de su sistema: ");
+        System.out.println("\n###### Creacion de System ######");
+        System.out.print("\n# Ingrese el nombre de su sistema: ");
+        String name = sc.nextLine();
+        System.out.print("# Ingrese la id del chatbot inicial de su sistema: ");
         Integer cb_code = sc.nextInt();
         sc.nextLine();
-        this.setCb_code(cb_code);
-        ArrayList<Chatbot_21130814_MonjeRojas> chatbots = new ArrayList<>();
+        /*
         while(true) {
             System.out.println("¿Desea agregar un Chatbot?\n-En caso negativo presione Enter-");
             String checkSys = sc.nextLine().trim();
@@ -36,10 +28,16 @@ public class UserSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
             } else {
                 break;
             }
-        }
+        }*/
+        UserSystem_21130814_MonjeRojas newSys = new UserSystem_21130814_MonjeRojas(name,cb_code);
+        newSys.owner = Usr;
+        newSys.systemAddAdminUser(Usr.getName());
+        newSys.systemLogin(Usr.getName());
+        System.out.println("\n##### Gracias por crear tu System #####");
+        return newSys;
     }
 
-    private static Option_21130814_MonjeRojas createOption(){
+    public static Option_21130814_MonjeRojas createOption(){
         System.out.println("##### Crear Option #####");
         Scanner sc = new Scanner(System.in);
         System.out.print("Ingrese la id: ");
@@ -64,11 +62,11 @@ public class UserSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
                 break;
             }
         }
-        System.out.println("Option Creada Correctamente");
+        System.out.println("\n-Option Creada Correctamente-\n");
         return new Option_21130814_MonjeRojas(id,msg,cb_code,fw_code,keywords.toArray(String[]::new));
     }
 
-    private static Flow_21130814_MonjeRojas createFlow(){
+    public static Flow_21130814_MonjeRojas createFlow(){
         System.out.println("##### Crear Flow #####");
         Scanner sc = new Scanner(System.in);
         System.out.print("Ingrese la id del Flow: ");
@@ -76,7 +74,7 @@ public class UserSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
         sc.nextLine();
         System.out.print("Ingrese el mensaje: ");
         String msg = sc.nextLine();
-        Flow_21130814_MonjeRojas Fw = new Flow_21130814_MonjeRojas(id,msg,(Option_21130814_MonjeRojas[]) null);
+        Flow_21130814_MonjeRojas Fw = new Flow_21130814_MonjeRojas(id,msg);
         while(true) {
             System.out.println("¿Desea agregar un Option?\n-En caso negativo presione Enter-");
             String checkFw = sc.nextLine().trim();
@@ -87,11 +85,11 @@ public class UserSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
                 break;
             }
         }
-        System.out.println("\n-Flow creado correctamente-");
+        System.out.println("-Flow creado correctamente-\n");
         return Fw;
     }
 
-    private static Chatbot_21130814_MonjeRojas createChatbot(){
+    public static Chatbot_21130814_MonjeRojas createChatbot(){
         System.out.println("##### Crear Chatbot #####");
         Scanner sc = new Scanner(System.in);
         System.out.print("Ingrese la id del Chatbot: ");
@@ -104,7 +102,7 @@ public class UserSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
         System.out.print("Ingrese el id del flujo inicial: ");
         Integer fw_code = sc.nextInt();
         sc.nextLine();
-        Chatbot_21130814_MonjeRojas Cb = new Chatbot_21130814_MonjeRojas(id,name,msg,fw_code,(Flow_21130814_MonjeRojas[]) null);
+        Chatbot_21130814_MonjeRojas Cb = new Chatbot_21130814_MonjeRojas(id,name,msg,fw_code);
         while(true) {
             System.out.println("¿Desea agregar un Flow?\n-En caso negativo presione Enter-");
             String checkCb = sc.nextLine().trim();
@@ -115,7 +113,11 @@ public class UserSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
                 break;
             }
         }
-        System.out.println("\n-Chatbot creado correctamente-");
+        System.out.println("-Chatbot creado correctamente-\n");
         return Cb;
+    }
+
+    public AdminUser_21130814_MonjeRojas getOwner() {
+        return owner;
     }
 }
