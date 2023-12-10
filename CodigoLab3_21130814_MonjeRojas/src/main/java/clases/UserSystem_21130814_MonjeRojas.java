@@ -18,17 +18,6 @@ public class UserSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
         System.out.print("# Ingrese la id del chatbot inicial de su sistema: ");
         Integer cb_code = sc.nextInt();
         sc.nextLine();
-        /*
-        while(true) {
-            System.out.println("¿Desea agregar un Chatbot?\n-En caso negativo presione Enter-");
-            String checkSys = sc.nextLine().trim();
-            if (!checkSys.isEmpty()) {
-                Chatbot_21130814_MonjeRojas Cb = createChatbot();
-                this.systemAddChatbot(Cb);
-            } else {
-                break;
-            }
-        }*/
         UserSystem_21130814_MonjeRojas newSys = new UserSystem_21130814_MonjeRojas(name,cb_code);
         newSys.owner = Usr;
         newSys.systemAddAdminUser(Usr.getName());
@@ -38,7 +27,7 @@ public class UserSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
     }
 
     public static Option_21130814_MonjeRojas createOption(){
-        System.out.println("##### Crear Option #####");
+        System.out.println("\n##### Crear Option #####");
         Scanner sc = new Scanner(System.in);
         System.out.print("Ingrese la id: ");
         Integer id = sc.nextInt();
@@ -67,7 +56,7 @@ public class UserSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
     }
 
     public static Flow_21130814_MonjeRojas createFlow(){
-        System.out.println("##### Crear Flow #####");
+        System.out.println("\n##### Crear Flow #####");
         Scanner sc = new Scanner(System.in);
         System.out.print("Ingrese la id del Flow: ");
         Integer id = sc.nextInt();
@@ -90,7 +79,7 @@ public class UserSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
     }
 
     public static Chatbot_21130814_MonjeRojas createChatbot(){
-        System.out.println("##### Crear Chatbot #####");
+        System.out.println("\n##### Crear Chatbot #####");
         Scanner sc = new Scanner(System.in);
         System.out.print("Ingrese la id del Chatbot: ");
         Integer id = sc.nextInt();

@@ -9,7 +9,7 @@ public class DemoSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
         //Chatbot 0
         Option_21130814_MonjeRojas Op1 = new Option_21130814_MonjeRojas(1, "1) Viajar", 1, 1,"viajar","turistear","conocer");
         Option_21130814_MonjeRojas Op2 = new Option_21130814_MonjeRojas(2, "2) Estudiar", 2, 1,"Estudiar","Aprender","Perfeccionarme");
-        Flow_21130814_MonjeRojas F10 = new Flow_21130814_MonjeRojas(1,"Flujo Principal Chatbot 0\nBienvenido\n¿Qué te gustaría hacer?", Op1, Op2, Op2, Op2, Op1, Op1);
+        Flow_21130814_MonjeRojas F10 = new Flow_21130814_MonjeRojas(1,"Flujo Principal Chatbot 0\nBienvenido\n¿Que te gustaria hacer?", Op1, Op2, Op2, Op2, Op1, Op1);
         F10.flowAddOption(Op1);
         Chatbot_21130814_MonjeRojas Cb0 = new Chatbot_21130814_MonjeRojas(0,"Inicial","Bienvenido\n¿Qué te gustaría hacer?",1,F10,F10);
         //Chatbot 1
@@ -40,9 +40,6 @@ public class DemoSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
         Chatbot_21130814_MonjeRojas Cb2 = new Chatbot_21130814_MonjeRojas(2,"Orientador Académico","Bienvenido\n¿Qué te gustaría estudiar?",1,F30);
 
         //System
-        DemoSystem_21130814_MonjeRojas demo = new DemoSystem_21130814_MonjeRojas(Cb0,Cb1,Cb2);
-        demo.systemAddAdminUser("Pasdf");
-        return demo;
-        //return new DemoSystem_21130814_MonjeRojas(Cb0,Cb1,Cb2);
+        return new DemoSystem_21130814_MonjeRojas(Cb0,Cb1,Cb2);
     }
 }

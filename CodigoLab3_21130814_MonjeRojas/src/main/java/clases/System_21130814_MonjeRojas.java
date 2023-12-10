@@ -37,7 +37,6 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
         //Getters
     public Date getDate() {return date;}
     public User_21130814_MonjeRojas getUser() {return user;}
-    public ArrayList<User_21130814_MonjeRojas> getUserList() {return userList;}
     public ArrayList<Chatbot_21130814_MonjeRojas> getChatbots() {return chatbots;}
 
 
@@ -127,9 +126,9 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
 
     public void ShowSystem(){
         System.out.println("\n");
-        System.out.println("#" + this.getName());
+        System.out.println("## " + this.getName());
         if (this.getChatbots().isEmpty()){
-            System.out.println("# [No_Chatbots]");
+            System.out.println("## [No_Chatbots]");
         }
         else {
             for (Chatbot_21130814_MonjeRojas Cb : this.getChatbots()) {
@@ -170,7 +169,7 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
         return null;
     }
 
-    public Chatbot_21130814_MonjeRojas ChooseChatbot(){
+    public Integer ChooseChatbot(){
         if (this.getChatbots().isEmpty()){
             System.out.println("\n-Este System no posee Chatbots-");
             return null;
@@ -185,7 +184,7 @@ public class System_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas i
             System.out.print("\nRespuesta: ");
             Integer index = sc.nextInt();
             sc.nextLine();
-            return this.findCb(index);
+            return index;
         }
     }
 

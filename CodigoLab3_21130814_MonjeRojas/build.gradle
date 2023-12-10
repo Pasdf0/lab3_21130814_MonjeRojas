@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'org.example'
@@ -8,6 +9,25 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
+
+jar{
+    manifest {
+        attributes "Main-Class": "main.Main_21130814_MonjeRojas"
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+run {
+    standardInput = System.in
+}
+
+application {
+    mainClassName = 'main.Main_21130814_MonjeRojas'
+}
+
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'

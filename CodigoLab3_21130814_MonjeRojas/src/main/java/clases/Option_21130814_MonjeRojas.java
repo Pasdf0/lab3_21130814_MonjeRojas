@@ -33,13 +33,13 @@ public class Option_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas{
         this.keywords = keywords;
     }
     public void ShowOption(){
-        System.out.println("#### Option (id: " + this.getId() + ")");
-        System.out.println("#### Mensaje: " + this.getMsg());
+        System.out.println("##          Option (id: " + this.getId() + ")");
+        System.out.println("##          Mensaje: " + this.getMsg());
         if (this.getKeywords().isEmpty()){
-            System.out.println("#### Keywords: []");
+            System.out.println("##          Keywords: []");
         }
         else {
-            System.out.println("#### Keywords: " + this.getKeywords());
+            System.out.println("##          Keywords: " + this.getKeywords());
         }
     }
 }

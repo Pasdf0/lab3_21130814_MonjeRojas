@@ -41,11 +41,11 @@ public class Chatbot_21130814_MonjeRojas extends BaseStruct_21130814_MonjeRojas 
 
     //Otros
     public void ShowChatbot(){
-        System.out.println("## Chatbot (id: " + this.getId() + ")");
-        System.out.println("## Nombre: " + this.getName());
-        System.out.println("## Mensaje: " + this.getMsg());
+        System.out.println("##    Chatbot (id: " + this.getId() + ")");
+        System.out.println("##    Nombre: " + this.getName());
+        System.out.println("##    Mensaje: " + this.getMsg());
         if (this.getFlows().isEmpty()){
-            System.out.println("## [No_Flows]");
+            System.out.println("##    [No_Flows]");
         }
         else {
             for (Flow_21130814_MonjeRojas fw : this.getFlows()) {

@@ -12,6 +12,7 @@ public class Menu_21130814_MonjeRojas {
     private MenuSystem_21130814_MonjeRojas myMenu;
     private DemoSystem_21130814_MonjeRojas myDemo;
     private System_21130814_MonjeRojas currentSystem;
+    private Chatbot_21130814_MonjeRojas currentCb;
     private ArrayList<UserSystem_21130814_MonjeRojas> systems;
 
 
@@ -23,7 +24,6 @@ public class Menu_21130814_MonjeRojas {
 
     public void run(){
         Scanner sc = new Scanner(System.in);
-        Chatbot_21130814_MonjeRojas CurrentCb = null;
         while(true){
             if (this.myMenu.getCb_code() == 0){
                 String respuesta = this.askMenu();
@@ -162,14 +162,16 @@ public class Menu_21130814_MonjeRojas {
                 }
                 else if (check == 3){
                     System.out.print("\n");
-                    CurrentCb = this.currentSystem.ChooseChatbot();
-                    if (CurrentCb != null) {
+                    Integer index = this.currentSystem.ChooseChatbot();
+                    this.currentCb = this.currentSystem.findCb(index);
+                    if (this.currentCb != null) {
                         this.myMenu.setCb_code(7);
                     }
                 }
                 else if (check == 4){
                     System.out.print("\n");
-                    Chatbot_21130814_MonjeRojas Cb = this.currentSystem.ChooseChatbot();
+                    Integer index = this.currentSystem.ChooseChatbot();
+                    Chatbot_21130814_MonjeRojas Cb = this.currentSystem.findCb(index);
                     if (Cb != null) {
                         Cb.ShowChatbot();
                     }
@@ -230,7 +232,7 @@ public class Menu_21130814_MonjeRojas {
                 }
             }
             else if (this.myMenu.getCb_code() == 7){
-                Integer check = this.currentSystem.findCb(7).getFw_code();
+                Integer check = this.myMenu.findCb(7).getFw_code();
                 System.out.print("\n");
                 System.out.print("\n");
                 if (check == 1){
@@ -239,17 +241,22 @@ public class Menu_21130814_MonjeRojas {
                 }
                 else if (check == 2){
                     Flow_21130814_MonjeRojas Fw = createFlow();
-                    CurrentCb.chatbotAddFlow(Fw);
+                    this.currentCb.chatbotAddFlow(Fw);
                 }
                 else if (check == 3){
-                    Flow_21130814_MonjeRojas Fw = CurrentCb.ChooseFlow();
+                    Flow_21130814_MonjeRojas Fw = this.currentCb.ChooseFlow();
                     if (Fw != null) {
-                        CurrentCb.chatbotAddFlow(Fw);
+                        this.currentCb.chatbotAddFlow(Fw);
                     }
                 }
                 if (check != 1){
                     this.myMenu.findCb(7).resetFw_code();
                 }
+            }
+            else if (this.myMenu.getCb_code() == 99){
+                this.myDemo.systemLogout();
+                this.myMenu.systemLogout();
+                this.myMenu.resetSystem();
             }
             else{
                 break;
@@ -321,7 +328,7 @@ public class Menu_21130814_MonjeRojas {
 
     public Integer ChooseSystemAdmin(){
         System.out.println("\n##### Cual System desea Modificar #####");
-        System.out.println("-Para seleccionar ingresar un número-");
+        System.out.println("-Para seleccionar ingresar un numero-");
         String username = this.myMenu.getUser().getName();
         ArrayList<System_21130814_MonjeRojas> systemList = new ArrayList<>();
         for (UserSystem_21130814_MonjeRojas sys : this.systems){
