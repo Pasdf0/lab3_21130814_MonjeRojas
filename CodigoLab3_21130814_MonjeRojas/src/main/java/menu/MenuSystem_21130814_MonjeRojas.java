@@ -5,11 +5,26 @@ import clases.Flow_21130814_MonjeRojas;
 import clases.Option_21130814_MonjeRojas;
 import clases.System_21130814_MonjeRojas;
 
+/**
+ *  Clase MenuSystem
+ *  Genera un system pre hecho para ser usado como menu,
+ *  a diferencia de un system normal, no todos los option están hechos
+ *  para recibir una respuesta aceptable o dentro de los parámetros.
+ *  Hereda de {@link System_21130814_MonjeRojas}
+ */
 public class MenuSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas {
+    /**
+     * Constructor de MenuSystem, solo es llamado desde getMenuSystem.
+     * @param cb ingresa los chatbots creados en getMenuSystem
+     */
     private MenuSystem_21130814_MonjeRojas(Chatbot_21130814_MonjeRojas... cb){
         super("Sistema de Chatbots",0,cb);
     }
 
+    /**
+     * Crea un System ya predefinido para su uso en {@link Menu_21130814_MonjeRojas}
+     * @return retorna el MenuSystem terminado y listo para su uso
+     */
     public static MenuSystem_21130814_MonjeRojas getMenuSystem() {
         //C0 Inicial
         Option_21130814_MonjeRojas Op011 = new Option_21130814_MonjeRojas(1, "1) Ingresar", 1, 1, "Ingresar", "Login");

@@ -1,10 +1,23 @@
 package clases;
 
-public class DemoSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas{
+/**
+ *  Clase DemoSystem
+ *  Genera un system pre hecho para ser usado como demo.
+ *  Hereda de {@link System_21130814_MonjeRojas}
+ */
+public class DemoSystem_21130814_MonjeRojas extends System_21130814_MonjeRojas {
+    /**
+     * Constructor de DemoSystem, solo es llamado desde getSystemDemo.
+     * @param cb ingresa los chatbots creados en getSystemDemo
+     */
     private DemoSystem_21130814_MonjeRojas(Chatbot_21130814_MonjeRojas... cb){
         super("Chatbot Paradigmas",0,cb);
     }
 
+    /**
+     * Crea System con chatbots pre definidos.
+     * @return DemoSystem completo y listo para su uso
+     */
     public static DemoSystem_21130814_MonjeRojas getSystemDemo(){
         //Chatbot 0
         Option_21130814_MonjeRojas Op1 = new Option_21130814_MonjeRojas(1, "1) Viajar", 1, 1,"viajar","turistear","conocer");

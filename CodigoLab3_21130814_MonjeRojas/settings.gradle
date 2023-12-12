@@ -1,4 +1,3 @@
 rootProject.name = 'CodigoLab3_21130814_MonjeRojas'
 include 'src:main:test'
 findProject(':src:main:test')?.name = 'test'
-
