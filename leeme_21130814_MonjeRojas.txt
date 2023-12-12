@@ -1,0 +1,13 @@
+Para compilar y ejecutar:
+Abrir estos en la carpeta CodigoLab3_21130814_MonjeRojas
+
+En powershell:
+.\gradlew build
+.\gradlew run --console plain
+
+En cmd:
+gradlew build
+gradlew run --console plain
+
+No es necesario añadir --console plain pero ayuda visualmente
+Esto se indicó en el informe también.

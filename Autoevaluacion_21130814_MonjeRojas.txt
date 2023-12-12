@@ -1,0 +1,92 @@
+Autoevaluación Amaru Monje Rojas - 21.130.814-1
+Laboratorio 3 - Paradigmas de Programación
+Paradigma Orientado a Objetos
+
+Puntajes: 0, 0.25, 0.5, 0.75, 1
+
+
+-Requerimientos No Funcionales:
+
+1) Autoevaluación:
+Puntaje: 1
+
+2) Lenguaje:
+Puntaje: 1
+
+3) IDE: Intellij IDEA 2022.3
+Puntaje: 1 (JDK Major: 11)
+
+4) Interacciones: Consola (Gradle)
+Puntaje: 1
+
+5) Paradigma:
+Puntaje: 1
+
+6) Prerrequisitos:
+Puntaje: 1
+
+7) JavaDoc:
+Puntaje: 1
+
+8) Organización:
+Puntaje: 1
+
+9) Diagrama de análisis:
+Puntaje: 1
+
+10) Diagrama de Diseño:
+Puntaje: 1
+
+11) Git:
+Puntaje: 1
+
+
+-Requerimientos Funcionales:
+
+RF1) Clases:
+Puntaje: 1
+
+RF2) Menú:
+Puntaje: 1
+
+1) TDA Option - Constructor: Option
+Puntaje: 1
+
+2) TDA Flow - Constructor: Flow
+Puntaje: 1
+
+3) TDA Flow - Modificador: flowAddOption
+Puntaje: 1
+
+4) TDA Chatbot - Constructor: Chatbot
+Puntaje: 1
+
+5) TDA Chatbot - Modificador: chatbotAddFlow
+Puntaje: 1
+
+6) TDA User - Constructor: AdminUser y CommonUser
+Puntaje: 1
+
+7) TDA System - Constructor: System
+Puntaje: 1
+
+8) TDA System - Modificador: systemAddChatbot
+Puntaje: 1
+
+9) TDA System - Modificador: systemAddUser
+Puntaje: 1
+
+10) TDA System: systemLogin
+Puntaje: 1
+
+11) TDA System: systemLogout
+Puntaje: 1
+
+12) systemTalk:
+Puntaje: 1
+
+13) systemSynthesis:
+Puntaje: 1
+
+14) systemSimulate:
+Puntaje: 1

@@ -339,7 +339,9 @@ public class Menu_21130814_MonjeRojas {
             this.myMenu.systemTalk(respuesta);
         }
         else if (check == 2){
-            System.out.print("\n##### Presione Enter para salir (Respuesta Vacia) #####");
+            System.out.print("\n######################################################");
+            System.out.print("##### Presione Enter para salir (Respuesta Vacia) #####");
+            System.out.print("#######################################################\n");
             this.currentSystem.getUser().deleteHistory();
             while (true) {
                 String respuesta = this.askCurrent();
@@ -350,7 +352,7 @@ public class Menu_21130814_MonjeRojas {
                     break;
                 }
             }
-            System.out.println("-Se ha interactuado con el sistema correctamente-\n");
+            System.out.println("\n-Se ha interactuado con el sistema correctamente-\n");
         }
         else if (check == 3){
             String name = this.myMenu.getUser().getName();

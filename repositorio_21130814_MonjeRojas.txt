@@ -1,0 +1,6 @@
+Https: https://github.com/Pasdf0/lab3_21130814_MonjeRojas.git
+SSH: git@github.com:Pasdf0/lab3_21130814_MonjeRojas.git
+Github CLI: gh repo clone Pasdf0/lab3_21130814_MonjeRojas
+
+El SSH puede que no funcione, sale este mensaje en Github:
+"You don't have any public SSH keys in your GitHub account. You can add a new public key, or try cloning this repository via HTTPS."
